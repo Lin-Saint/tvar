@@ -9,15 +9,38 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:tvar.helloWorld",
+    "onCommand:tvar.translateVariable"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "tvar.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "tvar.translateVariable",
+        "title": "Translate Variable"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "tvar",
+      "properties": {
+        "tvar.deepseekApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "DeepSeek API key used for AI translation. If empty, extension falls back to a local mock translator. You may also set the DEEPSEEK_API_KEY environment variable."
+        },
+        "tvar.translationProvider": {
+          "type": "string",
+          "enum": ["deepseek","mock"],
+          "default": "deepseek",
+          "description": "Choose translation provider. 'deepseek' uses DeepSeek when an API key is configured; 'mock' always uses a local fallback for testing."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
