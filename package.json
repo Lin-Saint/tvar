@@ -11,7 +11,8 @@
   ],
   "activationEvents": [
     "onCommand:tvar.helloWorld",
-    "onCommand:tvar.translateVariable"
+    "onCommand:tvar.translateVariable",
+    "onCommand:tvar.insertTranslatedVariable"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -23,6 +24,18 @@
       {
         "command": "tvar.translateVariable",
         "title": "Translate Variable"
+      }
+      ,
+      {
+        "command": "tvar.insertTranslatedVariable",
+        "title": "Insert Translated Variable from Comment"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "tvar.insertTranslatedVariable",
+        "key": "ctrl+alt+t",
+        "when": "editorTextFocus && !editorReadonly"
       }
     ],
     "configuration": {
